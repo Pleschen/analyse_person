@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Python Flask Bucket List App</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+
+<header class="header">
+    <h1>Контрольная работа по компьютерной лингвистике. </h1>
+</header>
+
+<main>
+    <h2>Статьи:</h2>
+    <div class="articles">
+
+        {% for message in articles %}
+        <div class="article">
+            <a href={{ message.link }} class="article-title"> {{ message.title }}</a>
+
+            <time>{{ message.date }}</time>
+            <p>{{ message.text }} </p>
+
+            <div class="info">
+                <div class="facts">
+                    <button class="getFacts white-btn" data-id="{{ message._id }}">Получить предложения с фактами</button>
+                    <div id="fact_{{ message._id }}"></div>
+                </div>
+
+                <div class="tonality">
+                    <button class="getTonality white-btn" data-id="{{ message._id }}">Запустить анализ тональности</button>
+                    <div id="tonality_{{ message._id }}"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+</body>
+</html>
+
